@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ActivityIndicator } from 'react-native';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, I18nManager } from 'react-native';
 import XDate from 'xdate';
 import PropTypes from 'prop-types';
 import styleConstructor from './style';
@@ -111,14 +111,14 @@ class CalendarHeader extends Component {
     return (
       <View>
         <View style={this.style.header}>
-          {leftArrow}
+          { I18nManager.isRTL? rightArrow : leftArrow }
           <View style={{ flexDirection: 'row' }}>
             <Text allowFontScaling={false} style={this.style.monthText} accessibilityTraits='header'>
               {this.props.month.toString(this.props.monthFormat ? this.props.monthFormat : 'MMMM yyyy')}
             </Text>
             {indicator}
           </View>
-          {rightArrow}
+          { I18nManager.isRTL? leftArrow : rightArrow }
         </View>
         {
           !this.props.hideDayNames &&
